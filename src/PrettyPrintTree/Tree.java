@@ -7,7 +7,7 @@ public class Tree {
         this.root = root;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Tree ttester = new Tree(null);
         ttester.run();
 
@@ -50,23 +50,23 @@ public class Tree {
         return tree;
     }
 
-    public void print_poggers_tree(Node n, String tabs, int xd) {
+    public void pretty_print_tree(Node n, String tabs, int leftCheck) {
         if (n != null) {
-            if (tabs != "") {
+            if (!tabs.equals("")) {
                 System.out.println(tabs.substring(0, tabs.length() - 4) + "----" + n.value);
             } else {
                 System.out.println(tabs + "" + n.value);
             }
 
-            if (xd > 0) {
+            if (leftCheck > 0) {
                 tabs = tabs.replace("|", " ");
-                xd -= 1;
+                leftCheck -= 1;
             }
 
             tabs += "|    ";
-            xd += 1;
-            print_poggers_tree(n.right, tabs, 0);
-            print_poggers_tree(n.left, tabs, xd);
+            leftCheck += 1;
+            pretty_print_tree(n.right, tabs, 0);
+            pretty_print_tree(n.left, tabs, leftCheck);
         } else {
             System.out.println(tabs.substring(0, tabs.length() - 4) + "----X");
         }
@@ -84,7 +84,7 @@ public class Tree {
                 searching = false;
             } else if (value > current.value) {
                 current = current.right;
-            } else if (value < current.value) {
+            } else {
                 current = current.left;
             }
         }
@@ -129,7 +129,7 @@ public class Tree {
         Node f = t.find(2, t);
         System.out.println("FOUND: " + f.value);
         System.out.println(t.print_tree(t.root));
-        t.print_poggers_tree(t.root, "", 0);
+        t.pretty_print_tree(t.root, "", 0);
 
 
         t.remove(78, t);
