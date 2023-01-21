@@ -12,24 +12,19 @@ public class DirReduction {
             put("EAST", 2);
             put("WEST", -2);
         }};
-        boolean done = false;
         ArrayList<String> tempList = new ArrayList<>(Arrays.asList(arr));
 
-        while (!done) {
-            boolean removed = false;
-            for (int i = tempList.size()-2, j = tempList.size()-1; i>=0; j--, i--) {
-                Integer dir1 = valueMap.get(tempList.get(i));
-                Integer dir2 = valueMap.get(tempList.get(j));
-                if (isBad(dir1,dir2)) {
-                    tempList.remove(j);
-                    tempList.remove(i);
-                    removed = true;
-                    j -= 2;
-                    i -= 2;
-                }
+        for (int i = tempList.size()-2, j = tempList.size()-1; i>=0; j--, i--) {
+            Integer dir1 = valueMap.get(tempList.get(i));
+            Integer dir2 = valueMap.get(tempList.get(j));
+            if (isBad(dir1,dir2)) {
+                tempList.remove(j);
+                tempList.remove(i);
+                j = tempList.size();
+                i = tempList.size()-1;
             }
-            done = !removed;
         }
+
         return tempList.toArray(new String[0]);
     }
     public static boolean isBad(Integer dir1, Integer dir2) {
