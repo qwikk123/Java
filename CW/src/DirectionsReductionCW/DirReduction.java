@@ -20,8 +20,8 @@ public class DirReduction {
             if (isBad(dir1,dir2)) {
                 tempList.remove(j);
                 tempList.remove(i);
-                j = tempList.size();
-                i = tempList.size()-1;
+                j = Math.min(tempList.size(), j+2);
+                i = j-1;
             }
         }
 
