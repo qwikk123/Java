@@ -4,8 +4,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("C:\\Users\\qwikk\\IdeaProjects\\Java\\AOC\\src\\StrategyGuide.txt");
+        File f = new File("StrategyGuide.txt");
         Scanner s = new Scanner(f);
+        int total1;
+        int total2;
+        total1 = part1(s);
+        s = new Scanner(f);
+        total2 = part2(s);
+        s.close();
+        System.out.println(total1 + " " + total2);
+    }
+    public static int part1(Scanner s) {
         int total = 0;
         while (s.hasNext()) {
             String line = s.nextLine();
@@ -14,11 +23,10 @@ public class Main {
             if (win(opponent,player)) total += 6;
             else if (draw(opponent,player)) total += 3;
             total += points(player);
-
         }
-        s.close();
-        System.out.println(total);
+        return total;
     }
+
     public static boolean win(char opponent, char player) {
         if (opponent == 'A' && player == 'Y') return true;
         if (opponent == 'B' && player == 'Z') return true;
@@ -36,5 +44,36 @@ public class Main {
         if (player == 'Y') return 2;
         if (player == 'Z') return 3;
         return -1;
+    }
+    public static int part2(Scanner s) {
+        int total = 0;
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            char opponent = line.charAt(0);
+            char outcome = line.charAt(2);
+            total += req(opponent, outcome);
+        }
+        return total;
+    }
+    public static int req (char opponent, char outcome) {
+        if (outcome == 'X') return lose2(opponent);
+        if (outcome == 'Y') return draw2(opponent);
+        if (outcome == 'Z') return win2(opponent);
+        return -1;
+    }
+    public static int lose2(char opponent) {
+        if (opponent == 'A') return 3;
+        if (opponent == 'B') return 1;
+        return 2;
+    }
+    public static int draw2(char opponent) {
+        if (opponent == 'A') return 1+3;
+        if (opponent == 'B') return 2+3;
+        return 3+3;
+    }
+    public static int win2(char opponent) {
+        if (opponent == 'A') return 2+6;
+        if (opponent == 'B') return 3+6;
+        return 1+6;
     }
 }
