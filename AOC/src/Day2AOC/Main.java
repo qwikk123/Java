@@ -1,10 +1,12 @@
+package Day2AOC;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("StrategyGuide.txt");
+        File f = new File("Day2AOC/StrategyGuide.txt");
         Scanner s = new Scanner(f);
         int total1;
         int total2;
