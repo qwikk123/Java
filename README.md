@@ -1,1 +1,1 @@
-# Random programming tasks etc in java
+# Random programming tasks in java
